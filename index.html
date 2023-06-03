@@ -1,73 +1,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>HOHOHEHE</title>
+    <title>Cek Data</title>
     <style>
-        #result {
-            margin-top: 20px;
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            resize: none;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .button-link {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 14px;
+            text-decoration: none;
+            color: #4CAF50;
+        }
+
+        .button-link:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
         }
     </style>
     <script>
-        function cariSelisih() {
-            var dataA = document.getElementById('dataA').value;
-            var dataB = document.getElementById('dataB').value;
-            var resultDiv = document.getElementById('result');
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var errorMessage = document.getElementById('error-message');
 
-            // Menghapus hasil pencarian sebelumnya
-            resultDiv.innerHTML = '';
+            // Reset error message
+            errorMessage.textContent = '';
 
-            if (dataA && dataB) {
-                var linesA = dataA.split('\n');
-                var linesB = dataB.split('\n');
-
-                var dataMapB = {};
-
-                // Membuat map dari data B berdasarkan username
-                for (var i = 0; i < linesB.length; i++) {
-                    var lineB = linesB[i].trim().split(' ');
-                    var usernameB = lineB[0];
-                    var balanceB = parseFloat(lineB[1]);
-                    dataMapB[usernameB] = balanceB;
-                }
-
-                // Mencari selisih dan username yang tidak sesuai pada data A
-                for (var j = 0; j < linesA.length; j++) {
-                    var lineA = linesA[j].trim().split(' ');
-                    var usernameA = lineA[0];
-                    var balanceA = parseFloat(lineA[1]);
-
-                    if (dataMapB.hasOwnProperty(usernameA)) {
-                        var balanceB = dataMapB[usernameA];
-
-                        if (balanceA !== balanceB) {
-                            var selisih = balanceB - balanceA;
-                            var resultLine = "Username: " + usernameA + ", Balance A: " + balanceA + ", Balance B: " + balanceB + ", Selisih: " + selisih;
-                            var resultItem = document.createElement('p');
-                            resultItem.textContent = resultLine;
-                            resultDiv.appendChild(resultItem);
-                        }
-                    }
-                }
-
-                if (resultDiv.innerHTML === '') {
-                    resultDiv.textContent = "Tidak ada username dengan selisih atau tidak sesuai balance.";
-                }
+            // Perform login validation
+            if (username === 'admin' && password === 'abc123') {
+                // Redirect to the main page
+                window.location.href = 'cek_data.html';
             } else {
-                resultDiv.textContent = "Mohon isi kedua kolom dengan data.";
+                // Show error message
+                errorMessage.textContent = 'Username atau password salah.';
             }
         }
     </script>
 </head>
 <body>
-    <h1>HOHOHEHE</h1>
-    <label for="dataA">Data A (Username dan Balance):</label>
-    <textarea id="dataA" rows="10" placeholder="Contoh format:\n123gancleng 110.00\nardysatria 190.00"></textarea><br><br>
-
-    <label for="dataB">Data B (Username dan Balance):</label>
-    <textarea id="dataB" rows="10" placeholder="Contoh format:\nusername1 110.00\nusername2 190.00"></textarea><br><br>
-
-    <button onclick="cariSelisih()">Cari Selisih</button>
-
-    <div id="result"></div>
+    <div class="container">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <div id="error-message" class="error-message"></div>
+    </div>
 </body>
 </html>
