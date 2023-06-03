@@ -50,9 +50,6 @@
         }
 
         .button-link {
-            position: absolute;
-            bottom: 10px;
-            left: 10px; /* Mengubah posisi tombol ke kiri */
             font-size: 14px;
             text-decoration: none;
             color: #4CAF50;
@@ -64,8 +61,6 @@
 
         .floating-button {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
             padding: 12px 20px;
             background-color: #4CAF50;
             color: white;
@@ -77,6 +72,16 @@
 
         .floating-button:hover {
             background-color: #45a049;
+        }
+
+        .floating-button.right {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .floating-button.left {
+            bottom: 20px;
+            left: 20px;
         }
     </style>
     <script>
@@ -169,11 +174,13 @@
         <button onclick="cariSelisih()">Cari Selisih</button>
 
         <div id="result"></div>
-
-        <a class="button-link" href="nomorhp.html">Nomor HP</a> <!-- Mengubah href menjadi nomorhp.html -->
-
-        <a class="button-link" href="gabung.html">Gabungkan Data</a>
     </div>
+
+    <!-- Tombol ke halaman nomorhp.html -->
+    <a class="floating-button right" href="nomorhp.html">Nomor HP</a>
+
+    <!-- Tombol ke halaman gabung.html -->
+    <a class="floating-button left" href="gabung.html">Gabungkan Data</a>
 
     <script>
         // Variabel untuk menyimpan waktu sesi
