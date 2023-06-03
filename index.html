@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HOHOHEHE</title>
+    <style>
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function cariSelisih() {
+            var dataA = document.getElementById('dataA').value;
+            var dataB = document.getElementById('dataB').value;
+            var resultDiv = document.getElementById('result');
+
+            // Menghapus hasil pencarian sebelumnya
+            resultDiv.innerHTML = '';
+
+            if (dataA && dataB) {
+                var linesA = dataA.split('\n');
+                var linesB = dataB.split('\n');
+
+                var dataMapB = {};
+
+                // Membuat map dari data B berdasarkan username
+                for (var i = 0; i < linesB.length; i++) {
+                    var lineB = linesB[i].trim().split(' ');
+                    var usernameB = lineB[0];
+                    var balanceB = parseFloat(lineB[1]);
+                    dataMapB[usernameB] = balanceB;
+                }
+
+                // Mencari selisih dan username yang tidak sesuai pada data A
+                for (var j = 0; j < linesA.length; j++) {
+                    var lineA = linesA[j].trim().split(' ');
+                    var usernameA = lineA[0];
+                    var balanceA = parseFloat(lineA[1]);
+
+                    if (dataMapB.hasOwnProperty(usernameA)) {
+                        var balanceB = dataMapB[usernameA];
+
+                        if (balanceA !== balanceB) {
+                            var selisih = balanceB - balanceA;
+                            var resultLine = "Username: " + usernameA + ", Balance A: " + balanceA + ", Balance B: " + balanceB + ", Selisih: " + selisih;
+                            var resultItem = document.createElement('p');
+                            resultItem.textContent = resultLine;
+                            resultDiv.appendChild(resultItem);
+                        }
+                    }
+                }
+
+                if (resultDiv.innerHTML === '') {
+                    resultDiv.textContent = "Tidak ada username dengan selisih atau tidak sesuai balance.";
+                }
+            } else {
+                resultDiv.textContent = "Mohon isi kedua kolom dengan data.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>HOHOHEHE</h1>
+    <label for="dataA">Data A (Username dan Balance):</label>
+    <textarea id="dataA" rows="10" placeholder="Contoh format:\n123gancleng 110.00\nardysatria 190.00"></textarea><br><br>
+
+    <label for="dataB">Data B (Username dan Balance):</label>
+    <textarea id="dataB" rows="10" placeholder="Contoh format:\nusername1 110.00\nusername2 190.00"></textarea><br><br>
+
+    <button onclick="cariSelisih()">Cari Selisih</button>
+
+    <div id="result"></div>
+</body>
+</html>
