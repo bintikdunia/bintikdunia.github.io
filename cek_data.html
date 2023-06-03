@@ -61,6 +61,23 @@
         .button-link:hover {
             text-decoration: underline;
         }
+
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .floating-button:hover {
+            background-color: #45a049;
+        }
     </style>
     <script>
         // Fungsi untuk mengatur waktu sesi
@@ -154,8 +171,11 @@
         <div id="result"></div>
 
         <a class="button-link" href="gabung.html">Gabungkan Data</a>
-      
     </div>
+
+    <!-- Tombol ke halaman nomorhp.html -->
+    <a class="floating-button" href="nomorhp.html">Nomor HP</a>
+
     <script>
         // Variabel untuk menyimpan waktu sesi
         var sessionTimeout;
