@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pemisahan Nama dan Nomor Telepon</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #2980b9, #3498db);
+        }
+
+        .container {
+            text-align: center;
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #2980b9;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2980b9;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result-textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            resize: vertical;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+    <script>
+        function separateNameAndPhoneNumber() {
+            var inputText = document.getElementById('inputText').value;
+            var resultTextarea = document.getElementById('resultTextarea');
+
+            if (inputText) {
+                var lines = inputText.trim().split('\n');
+
+                var textareaResult = '';
+                lines.forEach(function(line) {
+                    var parts = line.trim().split(/\s+/);
+
+                    if (parts.length === 2) {
+                        var phoneNumber = parts[1];
+
+                        // Mengubah format nomor telepon ke format Indonesia
+                        var formattedPhoneNumber = '+62 ' + phoneNumber.replace(/^0/, '').replace(/(\d{3})(\d{4})(\d{3})/, '$1-$2-$3');
+
+                        // Menambahkan hasil ke textarea
+                        textareaResult += formattedPhoneNumber + '\n';
+                    }
+                });
+
+                resultTextarea.value = textareaResult.trim();
+            } else {
+                resultTextarea.value = '';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Nomor Direct</h1>
+        <label for="inputText">Masukkan Nama dan Nomor Telepon</label>
+        <textarea id="inputText" rows="5" placeholder="Contoh:
+ekek1 0895426819050
+john +6281234567890
+jane 081234567890"></textarea>
+        <button onclick="separateNameAndPhoneNumber()">Pisahkan</button>
+        <label for="resultTextarea"></label>
+        <textarea id="resultTextarea" rows="5" readonly class="result-textarea"></textarea>
+    </div>
+</body>
+</html>
