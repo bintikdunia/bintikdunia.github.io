@@ -50,17 +50,22 @@
         }
 
         .button-link {
-            display: inline-block;
-            margin-right: 10px;
+            position: absolute;
+            bottom: 10px;
+            left: 10px; /* Mengubah posisi tombol ke kiri */
             font-size: 14px;
             text-decoration: none;
             color: #4CAF50;
         }
 
+        .button-link:hover {
+            text-decoration: underline;
+        }
+
         .floating-button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
             padding: 12px 20px;
             background-color: #4CAF50;
             color: white;
@@ -165,8 +170,9 @@
 
         <div id="result"></div>
 
+        <a class="button-link" href="nomorhp.html">Nomor HP</a> <!-- Mengubah href menjadi nomorhp.html -->
+
         <a class="button-link" href="gabung.html">Gabungkan Data</a>
-        <a class="floating-button" href="nomorhp.html">Nomor HP</a>
     </div>
 
     <script>
