@@ -80,7 +80,7 @@
                         var phoneNumber = parts[1];
 
                         // Mengubah format nomor telepon ke format Indonesia
-                        var formattedPhoneNumber = '+62 ' + phoneNumber.replace(/^0/, '').replace(/(\d{3})(\d{4})(\d{3})/, '$1-$2-$3');
+                        var formattedPhoneNumber = '62 ' + phoneNumber.replace(/^0/, '').replace(/(\d{3})(\d{4})(\d{3})/, '$1-$2-$3');
 
                         // Menambahkan hasil ke textarea
                         textareaResult += formattedPhoneNumber + '\n';
