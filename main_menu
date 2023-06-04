@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BINTIK DUNIA</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #1a3556, #090e16);
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    li {
+      margin: 0 10px;
+    }
+
+    a.button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 4px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <h1>MENU</h1>
+  <ul>
+    <li><a href="cek_data.html" class="button">Cek Data</a></li>
+    <li><a href="nomorhp.html" class="button">Nomor HP</a></li>
+    <li><a href="gabung.html" class="button">Gabung</a></li>
+  </ul>
+</body>
+</html>
