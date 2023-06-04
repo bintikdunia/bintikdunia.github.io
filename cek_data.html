@@ -112,10 +112,10 @@
         function cariSelisih() {
             var dataA = document.getElementById('dataA').value;
             var dataB = document.getElementById('dataB').value;
-            var resultDiv = document.getElementById('result');
+            var resultTextarea = document.getElementById('result');
 
             // Menghapus hasil pencarian sebelumnya
-            resultDiv.innerHTML = '';
+            resultTextarea.value = '';
 
             if (dataA && dataB) {
                 var linesA = dataA.split('\n');
@@ -143,18 +143,16 @@
                         if (balanceA !== balanceB) {
                             var selisih = balanceB - balanceA;
                             var resultLine = "Username: " + usernameA + ", Balance A: " + balanceA + ", Balance B: " + balanceB + ", Selisih: " + selisih;
-                            var resultItem = document.createElement('p');
-                            resultItem.textContent = resultLine;
-                            resultDiv.appendChild(resultItem);
+                            resultTextarea.value += resultLine + "\n";
                         }
                     }
                 }
 
-                if (resultDiv.innerHTML === '') {
-                    resultDiv.textContent = "Tidak ada username dengan selisih atau tidak sesuai balance.";
+                if (resultTextarea.value === '') {
+                    resultTextarea.value = "Tidak ada username dengan selisih atau tidak sesuai balance.";
                 }
             } else {
-                resultDiv.textContent = "Mohon isi kedua kolom dengan data.";
+                resultTextarea.value = "Mohon isi kedua kolom dengan data.";
             }
         }
     </script>
@@ -170,12 +168,7 @@
 
         <button onclick="cariSelisih()">Cari Selisih</button>
 
-         <div class="container">
-        <!-- Konten lainnya -->
-
-        <textarea id="result" class="readonly" readonly></textarea>
-    </div>
-
+        <textarea id="result" readonly></textarea>
     </div>
 
     <!-- Tombol menu ke halaman main_menu.html -->
