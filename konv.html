@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Konversi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #071b37, #0a274d);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #container {
+      width: 300px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 0;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    input[type="number"] {
+      width: 95%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: 10px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    #result {
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h2>Konversi</h2>
+    <label for="a">Berapa %</label>
+    <input type="number" id="a" placeholder="....">
+
+    <label for="b">Dari</label>
+    <input type="number" id="b" placeholder="....">
+
+    <button onclick="calculate()">Hitung</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      var a = parseFloat(document.getElementById("a").value);
+      var b = parseFloat(document.getElementById("b").value);
+      var result = (a / b) * 100;
+
+      if (isNaN(result)) {
+        document.getElementById("result").innerHTML = "Hasil tidak valid";
+      } else {
+        document.getElementById("result").innerHTML = "Hasil: " + result.toFixed(2) + "%";
+      }
+    }
+  </script>
+</body>
+</html>
