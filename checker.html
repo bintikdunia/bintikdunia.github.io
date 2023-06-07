@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CEK SELISIH DATA WEB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #00264d, #001a33);
+            color: #00264d;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            text-align: center;
+            color: #000; /* Ubah warna font menjadi hitam */
+        }
+
+        h1, h2 {
+            color: #00264d;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        textarea {
+            width: 80%;
+            height: 120px;
+            resize: none;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .result textarea {
+            width: 80%;
+            height: 100px;
+            resize: none;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function processData() {
+            var columnA = document.getElementById('column_a').value;
+            var columnB = document.getElementById('column_b').value;
+
+            var dataA = columnA.split('\n');
+            var dataB = columnB.split('\n');
+
+            var diffC = dataA.filter(function(item) {
+                return dataB.indexOf(item.trim()) === -1;
+            });
+
+            diffC = diffC.map(function(item) {
+                return item.replace('No Name', '').trim();
+            });
+
+            var diffD = dataB.filter(function(item) {
+                return dataA.indexOf(item.trim()) === -1;
+            });
+
+            var resultC = diffC.filter(function(item) {
+                return item !== '';
+            }).join('\n');
+            var resultD = diffD.join('\n');
+
+            document.getElementById('result_c').value = resultC;
+            document.getElementById('result_d').value = resultD;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>INPUT DATA</h1>
+        <div class="input-container">
+            <label for="column_a">Username Web</label>
+            <br>
+            <textarea id="column_a" placeholder="Masukkan data Username Web" rows="6"></textarea>
+        </div>
+
+        <div class="input-container">
+            <label for="column_b">Username Sheet</label>
+            <br>
+            <textarea id="column_b" placeholder="Masukkan data Username Sheet" rows="6"></textarea>
+        </div>
+
+        <button onclick="processData()">Process</button>
+
+        <div class="result">
+            <h2>Data yang belum dimasukkan</h2>
+            <textarea id="result_c" readonly></textarea>
+        </div>
+
+        <div class="result">
+            <h2>Kelebihan Input Data</h2>
+            <textarea id="result_d" readonly></textarea>
+        </div>
+    </div>
+</body>
+</html>
