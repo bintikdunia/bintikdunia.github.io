@@ -72,35 +72,40 @@
             margin-top: 10px;
         }
     </style>
-    <script>
-        function processData() {
-            var columnA = document.getElementById('column_a').value;
-            var columnB = document.getElementById('column_b').value;
+<script>
+    function processData() {
+        var columnA = document.getElementById('column_a').value;
+        var columnB = document.getElementById('column_b').value;
 
-            var dataA = columnA.split('\n');
-            var dataB = columnB.split('\n');
+        var dataA = columnA.split('\n');
+        var dataB = columnB.split('\n');
 
-            var diffC = dataA.filter(function(item) {
-                return dataB.indexOf(item.trim()) === -1;
+        var diffC = dataA.filter(function(item) {
+            return !dataB.find(function(bItem) {
+                return item.trim().toLowerCase() === bItem.trim().toLowerCase();
             });
+        });
 
-            diffC = diffC.map(function(item) {
-                return item.replace('No Name', '').trim();
+        diffC = diffC.map(function(item) {
+            return item.replace('No Name', '').trim();
+        });
+
+        var diffD = dataB.filter(function(item) {
+            return !dataA.find(function(aItem) {
+                return item.trim().toLowerCase() === aItem.trim().toLowerCase();
             });
+        });
 
-            var diffD = dataB.filter(function(item) {
-                return dataA.indexOf(item.trim()) === -1;
-            });
+        var resultC = diffC.filter(function(item) {
+            return item !== '';
+        }).join('\n');
+        var resultD = diffD.join('\n');
 
-            var resultC = diffC.filter(function(item) {
-                return item !== '';
-            }).join('\n');
-            var resultD = diffD.join('\n');
+        document.getElementById('result_c').value = resultC;
+        document.getElementById('result_d').value = resultD;
+    }
+</script>
 
-            document.getElementById('result_c').value = resultC;
-            document.getElementById('result_d').value = resultD;
-        }
-    </script>
 </head>
 <body>
     <div class="container">
