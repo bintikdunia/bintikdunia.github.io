@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AUTOMATA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 50px;
+    }
+
+    form {
+      display: inline-block;
+      margin-top: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      padding: 5px;
+      width: 150px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #hasil {
+      margin-top: 30px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>AUTOMATA</h1>
+  <form>
+    <label for="angkaPertama">Result A</label>
+    <input type="text" id="angkaPertama" maxlength="4">
+    <br><br>
+    <label for="angkaKedua">Result B</label>
+    <input type="text" id="angkaKedua" maxlength="4">
+    <br><br>
+    <button type="button" onclick="prosesAngka()">Proses</button>
+  </form>
+
+  <div id="hasil"></div>
+
+  <script>
+    function prosesAngka() {
+      var angkaPertama = document.getElementById("angkaPertama").value;
+      var angkaKedua = document.getElementById("angkaKedua").value;
+
+
+      var digit1 = parseInt(angkaPertama.charAt(0));
+      var digit2 = parseInt(angkaPertama.charAt(1));
+      var digit3 = parseInt(angkaPertama.charAt(2));
+      var digit4 = parseInt(angkaPertama.charAt(3));
+
+      var varA = digit1 + digit2;
+      var varB = digit3 * digit4;
+
+      varA = eval(varA.toString().split('').join('+'));
+      varB = eval(varB.toString().split('').join('+'));
+
+      var varAA = digit1 + varA;
+      var varAB = digit2 + varA;
+      var varAC = digit3 + varA;
+      var varAD = digit4 + varA;
+      
+      varAA = eval(varAA.toString().split('').join('+'));
+      varAB = eval(varAB.toString().split('').join('+'));
+      varAC = eval(varAC.toString().split('').join('+'));
+      varAD = eval(varAD.toString().split('').join('+'));
+
+      var hasilA = '[' + varAA + varAB + varAC + varAD + ']';
+
+
+      var digit5 = parseInt(angkaKedua.charAt(0));
+      var digit6 = parseInt(angkaKedua.charAt(1));
+      var digit7 = parseInt(angkaKedua.charAt(2));
+      var digit8 = parseInt(angkaKedua.charAt(3));
+
+      var varC = digit5 + digit6;
+      var varD = digit7 * digit8;
+
+      varC = eval(varC.toString().split('').join('+'));
+      varD = eval(varD.toString().split('').join('+'));
+
+      var kunciA = parseInt(hasilA.replace(/[^\d]/g, '')) - varC;
+      if (kunciA < 0) {
+        kunciA = Math.abs(kunciA);
+      }
+
+      var hasilAkhir = '[' + hasilA + varD + kunciA + ']';
+
+
+      hasilAkhir = hasilAkhir.split('').filter(function(value, index, self) {
+        return self.indexOf(value) === index && value !== '[' && value !== ']';
+      }).join('');
+
+
+      while (hasilAkhir.length < 7) {
+        var angkaAcak = Math.floor(Math.random() * 10).toString();
+        if (!hasilAkhir.includes(angkaAcak)) {
+          hasilAkhir += angkaAcak;
+        }
+      }
+
+      document.getElementById("hasil").innerHTML = "Hasil: " + hasilAkhir;
+    }
+  </script>
+</body>
+</html>
